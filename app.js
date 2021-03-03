@@ -3,8 +3,6 @@ var requests = require('request')
 var app = express();
 const path = require('path');
 
-const url = "https://bxdss8330c.execute-api.us-east-1.amazonaws.com/v1"
-
 const singlePrediction =  {
     "instances": [
         {
@@ -14,8 +12,7 @@ const singlePrediction =  {
     ]
 }
 
-var data = require('./data.json');
-var dataKeys = Object.keys(data);
+var keys = require('./private/keys.json');
 
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -26,7 +23,7 @@ app.get('/', (req, res) => {
 app.get('/bike_predict',function(req,res){
     var toFrontend;
     const options = {
-        url: url,
+        url: keys.url,
         json: true,
         body: singlePrediction
     };
