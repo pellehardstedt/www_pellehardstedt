@@ -1,17 +1,13 @@
 $(function(){
 
-  
 });
 
 function btnPredict() {
     $.getJSON('/bike_predict',function(json){
+        console.log(json.body)
         $('.result').append(
-            '<li><a href="#">' + json + '</a></li>'
+            '<li><a href="#">' + json.body + '</a></li>'
         );
-
-        json.forEach(function(data){
-            console.log(data)
-        });
     });
 }
 
