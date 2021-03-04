@@ -140,20 +140,15 @@ html {
     text-align: center;
     text-decoration: none;
     white-space: nowrap;
-    background-color: #1d7484;
+    background-color: #4a4a4a;
     color: #f9f9f9;
     border-radius: 1px;
-    border: 1px solid #1d7484;
+    border: 1px solid black;
     cursor: pointer;
     box-sizing: border-box; }
     .button[disabled], button[disabled], input[type="submit"][disabled], input[type="reset"][disabled], input[type="button"][disabled] {
       cursor: default;
       opacity: .5; }
-    .button:focus:enabled, .button:hover:enabled, button:focus:enabled, button:hover:enabled, input[type="submit"]:focus:enabled, input[type="submit"]:hover:enabled, input[type="reset"]:focus:enabled, input[type="reset"]:hover:enabled, input[type="button"]:focus:enabled, input[type="button"]:hover:enabled {
-      background-color: #982c61;
-      border-color: #982c61;
-      color: #f9f9f9;
-      outline: 0; }
   
   textarea, select, input {
     color: #4a4a4a;

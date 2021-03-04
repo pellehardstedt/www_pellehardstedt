@@ -12,7 +12,7 @@ const singlePrediction =  {
     ]
 }
 
-var keys = require('./private/keys.json');
+var keys = require(path.join(__dirname+'/private/keys.json');
 
 app.use(express.static(path.join(__dirname, 'public')));
 
