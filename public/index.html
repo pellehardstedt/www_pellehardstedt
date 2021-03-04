@@ -3,16 +3,23 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="styles.css?v=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="jquery.datetimepicker.css"/>
     <title>Pelle Härdstedt</title>
 </head>
 
-<body>  
+<body> 
     <h3>Pelle Härdstedt</h3>
+    <p>In the problem of Bike Sharing Demand, we are given the total number of bike rentals for each hour for the 1st to 19th of every month for two years and we need to predict the number of rentals for the next 11 days for each month.
+        Luckily the problem statement is simple here and data is pretty nicely explained.
+    </p>
+    <input type="text" id="dateInput"/>
+
     <p>Press the button to make a prediction</p>
     <button onclick="btnPredict()">Predict</button>
     <p class="result"></p>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="jquery.datetimepicker.full.js"></script>
     <script src="index.js"></script>
 </body>
 </html>

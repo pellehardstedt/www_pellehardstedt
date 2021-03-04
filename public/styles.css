@@ -38,16 +38,7 @@ html {
   
   h3 {
     font-size: 1.75em; }
-  
-  h4 {
-    font-size: 1.5em; }
-  
-  h5 {
-    font-size: 1.25em; }
-  
-  h6 {
-    font-size: 1em; }
-  
+    
   p {
     margin-top: 0px;
     margin-bottom: 2.5rem; }
@@ -149,25 +140,6 @@ html {
     .button[disabled], button[disabled], input[type="submit"][disabled], input[type="reset"][disabled], input[type="button"][disabled] {
       cursor: default;
       opacity: .5; }
-  
-  textarea, select, input {
-    color: #4a4a4a;
-    padding: 6px 10px;
-    /* The 6px vertically centers text on FF, ignored by Webkit */
-    margin-bottom: 10px;
-    background-color: #f1f1f1;
-    border: 1px solid #f1f1f1;
-    border-radius: 4px;
-    box-shadow: none;
-    box-sizing: border-box; }
-    textarea:focus, select:focus, input:focus {
-      border: 1px solid #1d7484;
-      outline: 0; }
-  
+
   input[type="checkbox"]:focus {
     outline: 1px dotted #1d7484; }
-  
-  label, legend, fieldset {
-    display: block;
-    margin-bottom: .5rem;
-    font-weight: 600; }
