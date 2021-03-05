@@ -3,7 +3,7 @@ function btnPredict() {
     date = dateObj.toLocaleString();
     $.post('/bike_predict', {data: date}, function(json){
         $('#result').empty()
-        if(json.body == "Data for selected date and hour is unavaliable. Please select a diffrent date or hour."){
+        if(json.body == "Data for selected date and hour is unavaliable. Please select a different date or hour."){
             $('#result').append(
                 '<p> ' + json.body + ' </p>'
             );

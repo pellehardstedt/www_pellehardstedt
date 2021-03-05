@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({
 app.post('/bike_predict',function(req,res){
     dateData = searchDate(req.body.data)
     if(dateData == null){
-        res.json({body: "Data for selected date and hour is unavaliable. Please select a diffrent date or hour."})
+        res.json({body: "Data for selected date and hour is unavaliable. Please select a different date or hour."})
     } else {
 
         dateJSON = JSON.parse('{"instances": [{"features": [' + dateData.toString() + ']}]}')
