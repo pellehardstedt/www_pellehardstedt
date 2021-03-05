@@ -37,7 +37,6 @@ app.post('/bike_predict',function(req,res){
                 console.log("Error")
                 return console.log(err)
             }
-            //responde to the outer request
             res.json(body)
         });
     }
