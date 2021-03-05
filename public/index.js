@@ -98,12 +98,19 @@ $(function(){
 });
 
 function btnPredict() {
-    let date = $('#dateInput').datetimepicker('getValue')
-    date = date.toLocaleString();
+    let dateObj = $('#dateInput').datetimepicker('getValue')
+    date = dateObj.toLocaleString();
     $.post('/bike_predict', {data: date}, function(json){
-        $('.result').append(
-            '<li><a href="#">' + json.body + '</a></li>'
-        );
-        $('#dateInput').datetimepicker('reset');
+        $('#result').empty()
+        if(json.body == "Data for selected date and hour is unavaliable. Please select a diffrent date or hour."){
+            $('#result').append(
+                '<p> ' + json.body + ' </p>'
+            );
+        } else {
+            $('#result').append(
+                '<p>The predicted demand for bikes on ' + dateObj.toLocaleString('en-GB', {hour: "2-digit", minute: "2-digit", weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'}) + ' is: '+ json.body.substring(1,5) + '</p>'
+            );
+        }
+        //$('#dateInput').datetimepicker('reset');
     }, 'json');
 }

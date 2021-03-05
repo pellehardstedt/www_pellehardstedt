@@ -6,7 +6,6 @@ const path = require('path');
 const { json } = require('express');
 
 const allDates =require(path.join(__dirname+'/private/allDates.json'));
-
 const keys = require(path.join(__dirname+'/private/keys.json'));
 
 app.use(express.static(path.join(__dirname, 'public')));
@@ -21,22 +20,28 @@ app.use(bodyParser.urlencoded({
 
 app.post('/bike_predict',function(req,res){
     dateData = searchDate(req.body.data)
+    if(dateData == null){
+        res.json({body: "Data for selected date and hour is unavaliable. Please select a diffrent date or hour."})
+    } else {
 
-    dateJSON = `{"instances": [{"features": ${dateData}}]}`
-    var toFrontend;
-    const options = {
-        url: keys.url,
-        json: true,
-        body: dateJSON
-    };
+        dateJSON = JSON.parse('{"instances": [{"features": [' + dateData.toString() + ']}]}')
 
-    requests.post(options, (err, response, body) => {
-        if (err) {
-            return console.log(err)
-        }
-        //responde to the outer request
-        res.json(dateJSON)
-    });
+        const options = {
+            url: keys.url,
+            json: true,
+            body: dateJSON
+        };
+
+        requests.post(options, (err, response, body) => {
+            if (err) {
+                console.log("Error")
+                return console.log(err)
+            }
+            //responde to the outer request
+            res.json(body)
+        });
+    }
+
 });
 
 app.listen(3000, function(){
@@ -52,6 +57,9 @@ function searchDate(date){
         }
     }
     jsonString = JSON.stringify(returnCSV)
+    if(!jsonString){
+        return null
+    }
     jsonArray = jsonString.split('":"')
 
     date = jsonArray[1].split(',"')[0]
@@ -66,5 +74,5 @@ function searchDate(date){
     humidity = jsonArray[6].split(',"')[0]
     windspeed = jsonArray[7].split(',"')[0]
 
-    return [date, holiday, workingday, weather, temp, atemp, humidity, windspeed]
+    return [date, parseInt(holiday), parseInt(workingday), parseInt(weather), parseFloat(temp), parseFloat(atemp), parseFloat(humidity), parseFloat(windspeed)]
 }

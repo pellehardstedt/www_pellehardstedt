@@ -10,6 +10,10 @@ html {
     color: #4a4a4a;
     background-color: #f9f9f9;
     padding: 13px; }
+
+  .dateAndButton{
+    margin-bottom: 25px;
+  }
   
   @media (max-width: 684px) {
     body {
