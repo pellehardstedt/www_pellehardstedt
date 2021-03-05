@@ -9,15 +9,21 @@
 </head>
 
 <body> 
-    <h3>Pelle Härdstedt</h3>
-    <p>In the problem of Bike Sharing Demand, we are given the total number of bike rentals for each hour for the 1st to 19th of every month for two years and we need to predict the number of rentals for the next 11 days for each month.
-        Luckily the problem statement is simple here and data is pretty nicely explained.
+    <h3>Bike Sharing Demand</h3>
+    <p>In the problem of the Bike Sharing Demand, we are given the total number of bike rentals for each hour for the 1st to 19th of every month for two years and we need to predict the number of rentals for the next 11 days for each month.
     </p>
+    <p>The data that is used to predict the demand for the bikes is:</p>
+    <ul>
+        <li>The date, day of week, if it is a weekday or weekend or holiday.</li>
+        <li>The weather quantized to four types</li>
+        <li>The actual temperature and the perceived temperature.</li>
+        <li>Windspeed.</li>
+    </ul>
 
     <p>Pick a date and hour from the 20th to the last of every month.</p>
     <div class="dateAndButton">
         <input type="text" id="dateInput"/>
-        <button onclick="btnPredict()">Predict</button>
+        <button id="predBut" onclick="btnPredict()">Predict</button>
     </div>
     <p id="result"></p>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
