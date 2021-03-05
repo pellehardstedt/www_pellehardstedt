@@ -19,9 +19,11 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.post('/bike_predict',function(req,res){
+    let pred;
     dateData = searchDate(req.body.data)
     if(dateData == null){
-        res.json({body: "Data for selected date and hour is unavaliable. Please select a different date or hour."})
+        resJSON = JSON.parse('{"pred": "Data for selected date and hour is unavaliable. Please select a different date or hour."}')
+        res.json(resJSON)
     } else {
 
         dateJSON = JSON.parse('{"instances": [{"features": [' + dateData.toString() + ']}]}')
@@ -31,15 +33,19 @@ app.post('/bike_predict',function(req,res){
             json: true,
             body: dateJSON
         };
-
-        requests.post(options, (err, response, body) => {
+        requests.post(options, (err, response, json) => {
             if (err) {
                 console.log("Error")
                 return console.log(err)
             }
-            res.json(body)
+            pred = json.body
+            resJSON = JSON.parse('{"pred": "' + pred+ '", "dateData": [' + dateData + ']}')
+            res.json(resJSON)
         });
     }
+    //console.log("Pred 2: " + pred)
+    
+
 
 });
 

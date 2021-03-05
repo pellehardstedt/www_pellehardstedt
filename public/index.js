@@ -2,19 +2,31 @@ function btnPredict() {
     let dateObj = $('#dateInput').datetimepicker('getValue')
     date = dateObj.toLocaleString();
     $.post('/bike_predict', {data: date}, function(json){
+
+        options = {hour: "2-digit", minute: "2-digit", weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'}
+
         $('#result').empty()
-        if(json.body == "Data for selected date and hour is unavaliable. Please select a different date or hour."){
+        if(json.pred == "Data for selected date and hour is unavaliable. Please select a different date or hour."){
             $('#result').append(
-                '<p> ' + json.body + ' </p>'
+                '<p>' + json.pred + ' </p>'
             );
         } else {
             $('#result').append(
-                '<p>The predicted demand for bikes on ' + dateObj.toLocaleString('en-GB', {hour: "2-digit", minute: "2-digit", weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'}) + ' is: '+ json.body.substring(1,5) + '</p>'
+                '<p class="pred_1">' + dateObj.toLocaleString('en-GB', options) + '</p>' +
+                '<p class="pred_2">' + weather[json.dateData[3]] + '.</p>' +
+                '<p class="pred_3"> The temperature was ' + json.dateData[4] + ' degrees celsius, perceived as ' + json.dateData[5] + ' degrees.</p>'+
+                '<p class="pred_4">The humidity was ' + json.dateData[6] + '% and the windspeed ' + json.dateData[7]  + ' MPH.</p>'+
+                '<p class="pred_5">Estimated demand for bikes : '+ json.pred.substring(1,5) + '</p>'
             );
         }
         //$('#dateInput').datetimepicker('reset');
     }, 'json');
 }
+
+weather = ["There was a clear sky, a few clouds or partly cloudy",
+            "It was cloudy and/or misty",
+            "There was light rain or snow, thunderstorm",
+            "There was heavy rain, thunderstorm and/or mist or fog"]
 
 $(function(){
     $('#dateInput').datetimepicker({
