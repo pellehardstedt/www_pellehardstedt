@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-app.post('/bike_predict',function(req,res){
+app.post('/bike_predict', function(req,res){
     let pred;
     dateData = searchDate(req.body.data)
     if(dateData == null){
@@ -33,14 +33,14 @@ app.post('/bike_predict',function(req,res){
             json: true,
             body: dateJSON
         };
-        requests.post(options, (err, response, json) => {
+        requests.post(options,  async (err, response, json) => {
             if (err) {
                 console.log("Error")
                 return console.log(err)
             }
             pred = json.body
-            resJSON = JSON.parse('{"pred": "' + pred+ '", "dateData": [' + dateData + ']}')
-            res.json(resJSON)
+            resJSON = await JSON.parse('{"pred": "' + pred+ '", "dateData": [' + dateData + ']}')
+            await res.json(resJSON)
         });
     }
     //console.log("Pred 2: " + pred)
