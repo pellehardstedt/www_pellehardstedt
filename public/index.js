@@ -1,6 +1,19 @@
 function btnPredict() {
     let dateObj = $('#dateInput').datetimepicker('getValue')
     date = dateObj.toLocaleString();
+
+    //date formatting on mac is different
+    //for PC do nothing
+    if(date.split(",")[1] == undefined) {
+
+    } else {
+        //MAC
+        time = date.split(", ")[1]
+        year = date.split("/")[2].split(',')[0]
+        month = date.split("/")[1]
+        day = date.split("/")[0]  
+        date = year + '-' + month + '-' + day + " " + time
+    }
     $.post('/bike_predict', {data: date}, function(json){
 
         options = {hour: "2-digit", minute: "2-digit", weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'}
