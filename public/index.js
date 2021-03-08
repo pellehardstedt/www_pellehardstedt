@@ -1,17 +1,15 @@
 function btnPredict() {
     let dateObj = $('#dateInput').datetimepicker('getValue')
-    date = dateObj.toLocaleString();
-    console.log(date)
-    if(date.split(",")[1] == undefined) {
 
-    } else {
-        //MAC
-        time = date.split(", ")[1]
-        year = date.split("/")[2].split(',')[0]
-        month = date.split("/")[1]
-        day = date.split("/")[0]  
-        date = year + '-' + month + '-' + day + " " + time
-    }
+    time = dateObj
+    year = dateObj.getFullYear()
+    month = dateObj.getMonth()+1
+    month = (month<10) ? month = 0 + month.toString() : month;
+    hour = dateObj.getHours()
+    day = dateObj.getDate()
+    day = (day<10) ? day = 0 + day.toString() : day;
+    date = year + '-' + month + '-' + day + ' ' + hour + ':00:00'
+
     $.post('/bike_predict', {data: date}, function(json){
 
         options = {hour: "2-digit", minute: "2-digit", weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'}
