@@ -1,9 +1,7 @@
 function btnPredict() {
     let dateObj = $('#dateInput').datetimepicker('getValue')
     date = dateObj.toLocaleString();
-
-    //date formatting on mac is different
-    //for PC do nothing
+    console.log(date)
     if(date.split(",")[1] == undefined) {
 
     } else {
