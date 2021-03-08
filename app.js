@@ -21,6 +21,7 @@ app.use(bodyParser.urlencoded({
 app.post('/bike_predict', async function(req,res){
     let pred;
     dateData = await searchDate(req.body.data)
+    console.log(dateData)
     if(dateData == null){
         resJSON = JSON.parse('{"pred": "Data for selected date and hour is unavaliable. Please select a different date or hour."}')
         res.json(resJSON)
