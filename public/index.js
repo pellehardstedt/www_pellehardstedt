@@ -15,7 +15,7 @@ function btnPredict() {
         options = {hour: "2-digit", minute: "2-digit", weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'}
 
         $('#result').empty()
-        if(json.pred == "Data for selected date and hour is unavaliable. Please select a different date or hour."){
+        if(json.pred === "Data for selected date and hour is unavaliable. Please select a different date or hour."){
             $('#result').append(
                 '<p>' + json.pred + ' </p>'
             );

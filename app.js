@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({
 app.post('/bike_predict', async function(req,res){
     let pred;
     dateData = await searchDate(req.body.data)
-    if(dateData == null){
+    if(dateData === null){
         resJSON = JSON.parse('{"pred": "Data for selected date and hour is unavaliable. Please select a different date or hour."}')
         res.json(resJSON)
     } else {
@@ -52,15 +52,13 @@ app.listen(80, function(){
 function searchDate(date){
     let returnCSV;
     for(let i in allDates){
-        if(allDates[i].datetime == date){
+        if(allDates[i].datetime === date){
             returnCSV = allDates[i]
             break
         }
     }
     jsonString = JSON.stringify(returnCSV)
-    if(!jsonString){
-        return null
-    }
+    if(!jsonString) () => {return null;}
     jsonArray = jsonString.split('":"')
 
     date = jsonArray[1].split(',"')[0]
