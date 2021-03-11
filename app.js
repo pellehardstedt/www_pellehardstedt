@@ -15,7 +15,6 @@ app.get('/', (req, res) => {
 });
 
 app.get('*', (req, res) => {
-    console.log('redirecting')
     res.redirect('/');
 });
 
